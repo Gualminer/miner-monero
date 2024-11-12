@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minerando Monero (XMR)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        #startBtn, #pauseBtn {
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        #startBtn {
+            background-color: #28a745;
+            color: white;
+        }
+        #pauseBtn {
+            background-color: #ffc107;
+            color: white;
+        }
+        #status {
+            margin-top: 20px;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Minerando Monero (XMR)</h1>
+        <button id="startBtn" onclick="startMining()">Iniciar Mineração</button>
+        <button id="pauseBtn" onclick="pauseMining()" style="display: none;">Pausar Mineração</button>
+        <div id="status">Status: Aguardando ação...</div>
+    </div>
+
+    <script src="https://www.webminepool.com/lib/base.js"></script>
+    <script>
+        var miner;
+
+        function startMining() {
+            // Inicia a mineração com sua chave de site
+            miner = WMP.Anonymous('SK_vpHQiKSBSgCaPXq7jrO5L'); // Substitua pela sua chave
+
+            // Inicia a mineração
+            miner.start();
+
+            // Atualiza o status e esconde/mostra botões
+            document.getElementById('status').textContent = 'Status: Mineração em andamento...';
+            document.getElementById('startBtn').style.display = 'none';
+            document.getElementById('pauseBtn').style.display = 'inline-block';
+        }
+
+        function pauseMining() {
+            // Pausa a mineração
+            miner.stop();
+
+            // Atualiza o status e esconde/mostra botões
+            document.getElementById('status').textContent = 'Status: Mineração pausada.';
+            document.getElementById('startBtn').style.display = 'inline-block';
+            document.getElementById('pauseBtn').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
